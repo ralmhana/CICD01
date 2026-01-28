@@ -1,18 +1,17 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
-                echo 'Hello World'
+                git url: 'https://github.com/spring-projects/spring-petclinic.git', branch: 'main'
             }
         }
-        stage('Load Testing') {
-            steps {
-                sh 'k6 run loading_test.js'
-            }
+      stage("build & SonarQube analysis") {
+        steps {
+          withSonarQubeEnv('SonarQube') {
+            sh 'mvn clean package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+          }
         }
-
+      }
     }
-
-}
+  }
