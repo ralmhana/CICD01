@@ -28,7 +28,7 @@ pipeline {
 
     post {
         always {
-            junit 'results.xml'
+            slackSend color: "good", message: "Message from Jenkins Pipeline"
         }
     }
 }
