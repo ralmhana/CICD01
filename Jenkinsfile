@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'grafana/k6'
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -16,7 +20,7 @@ pipeline {
     }
 
     post {
-        success {
+        always {
             slackSend color: "good", message: "Message from Jenkins Pipeline"
         }
     }
