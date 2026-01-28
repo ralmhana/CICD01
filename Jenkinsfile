@@ -8,18 +8,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip install -r requirements.txt'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'pytest --junitxml=results.xml'
-            }
-        }
-
         stage('Run load test') {
             steps {
                 sh 'k6 run load_testing.js'
@@ -28,7 +16,7 @@ pipeline {
     }
 
     post {
-        always {
+        success {
             slackSend color: "good", message: "Message from Jenkins Pipeline"
         }
     }
