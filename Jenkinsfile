@@ -9,7 +9,7 @@ pipeline {
     }
     post {
         success {
-           slackSend color: "good", message: "Message from Jenkins Pipeline"
+           slackSend color: "good", message: "New Message from Jenkins Pipeline"
         }
     }
   }
