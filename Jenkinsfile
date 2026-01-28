@@ -3,15 +3,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/spring-projects/spring-petclinic.git', branch: 'main'
+                echo 'Hello'
             }
         }
-      stage("build & SonarQube analysis") {
-        steps {
-          withSonarQubeEnv('SonarQube') {
-            sh 'mvn clean package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
-          }
+    }
+    post {
+        success {
+           slackSend color: "good", message: "Message from Jenkins Pipeline"
         }
-      }
     }
   }
