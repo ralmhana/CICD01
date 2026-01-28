@@ -24,6 +24,12 @@ pipeline {
                 sh 'pytest --junitxml=results.xml'
             }
         }
+
+        stage('Run Tests') {
+            steps {
+                sh 'k6 run load_testing.js'
+            }
+        }
     }
 
     post {
