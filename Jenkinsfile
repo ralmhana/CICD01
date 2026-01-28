@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'grafana/k6'
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout') {
