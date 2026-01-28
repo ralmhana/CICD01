@@ -7,6 +7,11 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Load Testing') {
+            steps {
+                sh 'k6 run loading_test.js'
+            }
+        }
 
     }
 
