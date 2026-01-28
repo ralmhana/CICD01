@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Run load test') {
             steps {
                 sh 'k6 run load_testing.js'
             }
